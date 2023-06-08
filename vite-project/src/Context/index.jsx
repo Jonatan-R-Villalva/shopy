@@ -1,10 +1,14 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
-const Store = createContext();
+export const Store = createContext();
 
 export const StoreProvider = ({children})=>{
+    const [count,setCount] = useState(0);
     return(
-        <Store.Provider>
+        <Store.Provider value={{
+            count,
+            setCount
+        }}>
             {children}
         </Store.Provider>
     )
