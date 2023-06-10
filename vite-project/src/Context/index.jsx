@@ -15,6 +15,15 @@ export const StoreProvider = ({children})=>{
     //product-detail show product
     const [productToShow , setProductToShow] = useState({});
 
+    //cart-product
+    const [cartProducts , setCartProducts] = useState([]);
+
+    // checkout-side-menu open/close
+    const [checkoutSideMenuOpen , setCheckoutSideMenuOpen] = useState(false);
+    const openCheckout = ()=> setCheckoutSideMenuOpen(true);
+    const closeCheckout = ()=> setCheckoutSideMenuOpen(false);
+
+
 
     return(
         <Store.Provider value={{
@@ -24,7 +33,13 @@ export const StoreProvider = ({children})=>{
             closeDetail,
             productDetailOpen,
             productToShow,
-            setProductToShow
+            setProductToShow,
+            cartProducts,
+            setCartProducts,
+            checkoutSideMenuOpen,
+            setCheckoutSideMenuOpen,
+            openCheckout,
+            closeCheckout
         }}>
             {children}
         </Store.Provider>
