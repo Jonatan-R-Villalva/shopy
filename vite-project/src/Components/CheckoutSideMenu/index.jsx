@@ -8,6 +8,10 @@ import './styles.css'
 
 export const CheckoutSideMenu = () =>{
     const context = useContext(Store);
+    const handleDelete = (id)=>{
+        const filteredProducts = context.cartProducts.filter(prod => prod.id !== id)
+        context.setCartProducts(filteredProducts)
+    }
     return(
         <aside className={`${context.checkoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu border border-black rounded-lg flex-col fixed right-0 bg-white`}>
             <div className='flex justify-between items-center p-6'>
@@ -22,9 +26,11 @@ export const CheckoutSideMenu = () =>{
                 context.cartProducts.map(prod =>(
                     <OrderCards
                     key= {prod.id}
+                    id= {prod.id}
                     title= {prod.title}
                     imgUrl= {prod.images}
                     price= {prod.price}
+                    handleDelete= {handleDelete}
                     />
                 ))
             }
