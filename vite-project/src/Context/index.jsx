@@ -3,7 +3,7 @@ import { createContext, useState } from 'react';
 export const Store = createContext();
 
 export const StoreProvider = ({children})=>{
-
+    
     // shopping cart 
     const [count , setCount] = useState(0);
     
