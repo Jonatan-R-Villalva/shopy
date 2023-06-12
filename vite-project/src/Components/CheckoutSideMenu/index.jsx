@@ -8,7 +8,6 @@ import './styles.css'
 
 export const CheckoutSideMenu = () =>{
     const context = useContext(Store);
-    console.log(context.cartProducts)
     return(
         <aside className={`${context.checkoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu border border-black rounded-lg flex-col fixed right-0 bg-white`}>
             <div className='flex justify-between items-center p-6'>
