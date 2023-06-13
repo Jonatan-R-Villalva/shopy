@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 
 export const Store = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const StoreProvider = ({children})=>{
     
     // shopping cart 
@@ -17,6 +18,9 @@ export const StoreProvider = ({children})=>{
 
     //cart-product
     const [cartProducts , setCartProducts] = useState([]);
+
+    //cart-product order
+    const [ order , setOrder ] = useState([])
 
     // checkout-side-menu open/close
     const [checkoutSideMenuOpen , setCheckoutSideMenuOpen] = useState(false);
@@ -39,7 +43,9 @@ export const StoreProvider = ({children})=>{
             checkoutSideMenuOpen,
             setCheckoutSideMenuOpen,
             openCheckout,
-            closeCheckout
+            closeCheckout,
+            order,
+            setOrder
         }}>
             {children}
         </Store.Provider>
