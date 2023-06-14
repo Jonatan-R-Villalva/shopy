@@ -1,7 +1,8 @@
 import { useContext } from 'react'
+import {Link} from 'react-router-dom'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { Store } from '../../Context';
-import { OrderCards } from '../OrderCards';
+import { OrderCard } from '../OrderCard';
 import { totalPrice } from '../../Utils';
 
 
@@ -35,7 +36,7 @@ export const CheckoutSideMenu = () =>{
             <div className='px-6 overflow-y-scroll flex-1'>
             {
                 context.cartProducts.map(prod =>(
-                    <OrderCards
+                    <OrderCard
                     key= {prod.id}
                     id= {prod.id}
                     title= {prod.title}
@@ -51,7 +52,9 @@ export const CheckoutSideMenu = () =>{
                     <span className='font-light'>Total price:</span>
                     <span className='font-medium text-2xl'>${totalPrice(context.cartProducts)}</span>
                 </p>
+                <Link to='/my-orders/last'>
                 <button className='bg-black py-3 w-full text-white rounded-lg' onClick={()=> handleCheckout()}>Checkout</button>
+                </Link>
             </div>
         </aside>
     )
