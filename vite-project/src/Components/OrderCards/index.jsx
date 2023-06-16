@@ -1,7 +1,5 @@
-
-import { XMarkIcon } from '@heroicons/react/24/solid'
-
 export const OrderCards = props =>{
+    // eslint-disable-next-line react/prop-types
     const { totalPrice , totalProducts } = props
     return(
         <div className='flex justify-between items-center mb-3 border border-black'>

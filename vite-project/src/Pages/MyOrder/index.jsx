@@ -7,6 +7,11 @@ import { OrderCard } from '../../Components/OrderCard';
 
 function MyOrder() {
   const context = useContext(Store);
+  const currentPath = window.location.pathname;
+  console.log(currentPath)
+  let index = currentPath.substring(currentPath.lastIndexOf('/') + 1)
+  console.log(index)
+  if (index === 'last') index = context.order?.length - 1
     return (
       <Layout>
         <div className='flex justify-center items-center relative w-80 mb-6'>
@@ -17,7 +22,7 @@ function MyOrder() {
         </div>
         <div className='flex flex-col ml-6 w-80'>
             {
-              context.order?.slice(-1)[0].products.map(prod =>(
+              context.order?.[index]?.products.map(prod =>(
                 <OrderCard
                   key= {prod.id}
                   id= {prod.id}
