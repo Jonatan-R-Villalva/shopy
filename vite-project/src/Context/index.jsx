@@ -1,9 +1,21 @@
-import { createContext, useState } from 'react';
+import { createContext, useState , useEffect } from 'react';
 
 export const Store = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const StoreProvider = ({children})=>{
+    // Get products
+    const [ products , setProducts ] = useState(null);
+
+    //Get products by title
+
+    const [searchByTitle , setSearchByTitle] = useState('');
+
+    useEffect(()=>{
+        fetch('https://api.escuelajs.co/api/v1/products')
+          .then(response => response.json())
+          .then(data => setProducts(data))
+      },[])
     
     // shopping cart 
     const [count , setCount] = useState(0);
@@ -45,7 +57,11 @@ export const StoreProvider = ({children})=>{
             openCheckout,
             closeCheckout,
             order,
-            setOrder
+            setOrder,
+            products,
+            setProducts,
+            searchByTitle,
+            setSearchByTitle
         }}>
             {children}
         </Store.Provider>
