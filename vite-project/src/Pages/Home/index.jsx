@@ -5,6 +5,29 @@ import { Card } from "../../Components/Card"
 import { ProductDetail } from "../../Components/ProductDetail";
 function Home() {
     const context = useContext(Store)
+    const renderView = ()=>{
+      if(context.searchByTitle?.length > 0){
+        if(context.filteredProducts?.length > 0){
+          return (
+            context.filteredProducts?.map((product)=>(
+              <Card key={product.id} 
+              data={product} />
+            )) 
+          )  
+        }else{
+          return <div className="w-full">
+            <h1 className=" flex justify-center text-center">we don't have anything</h1>
+          </div>
+        }
+      }else{
+        return(      
+          context.products?.map((product)=>(
+            <Card key={product.id} 
+            data={product} />
+          )) 
+      )        
+      }
+    }
   
     return (
       <Layout>
@@ -19,12 +42,7 @@ function Home() {
           placeholder='Search products'/>
         </div>
         <div className='grid gap-2 grid-cols-3 pr-16 mt-2 max-w-screen-lg'>
-        {
-          context.products?.map((product)=>(
-            <Card key={product.id} 
-            data={product} />
-          ))
-        }   
+        {renderView()}   
         </div>
         <ProductDetail />
       </Layout>
