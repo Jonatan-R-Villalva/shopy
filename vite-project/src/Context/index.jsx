@@ -12,6 +12,10 @@ export const StoreProvider = ({children})=>{
 
     const [searchByTitle , setSearchByTitle] = useState('');
 
+    //Get products by category
+
+    const [searchByCategory , setSearchByCategory] = useState(null);
+
     useEffect(()=>{
         fetch('https://api.escuelajs.co/api/v1/products')
         .then(response => response.json())
@@ -22,9 +26,32 @@ export const StoreProvider = ({children})=>{
         return products?.filter(product => product.title.toLowerCase().includes(searchByTitle.toLowerCase()))
     }
 
+    const filteredProductsByCategory = (products , searchByCategory)=>{
+        return products?.filter(product => product.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
+    }
+
+    const filterBy = (type , products , searchByCategory , searchByTitle)=>{
+        if(type === 'BY_TITLE'){
+            return filteredProductsByTitle(products,searchByTitle)
+            
+        }
+        if(type === 'BY_CATEGORY'){
+            return filteredProductsByCategory(products,searchByCategory)
+        }
+        if(type === 'BY_TITLE_AND_CATEGORY'){
+            return filteredProductsByCategory(products,searchByCategory).filter(product => product.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+        }
+        if(!type){
+            return products
+        }
+    }
+
     useEffect(()=>{
-        if(searchByTitle) setFilteredProducts(filteredProductsByTitle(products,searchByTitle))
-    },[products, searchByTitle])
+        if(searchByTitle && searchByCategory) setFilteredProducts(filterBy('BY_TITLE_AND_CATEGORY',products,searchByCategory,searchByTitle))
+        if(searchByTitle && !searchByCategory) setFilteredProducts(filterBy('BY_TITLE', products,searchByCategory,searchByTitle))
+        if(!searchByTitle && searchByCategory) setFilteredProducts(filterBy('BY_CATEGORY',products,searchByCategory,searchByTitle))
+        if(!searchByTitle && !searchByCategory) setFilteredProducts(filterBy(null,products,searchByCategory,searchByTitle))
+    },[products, searchByTitle , searchByCategory])
 
     
     // shopping cart 
@@ -74,7 +101,11 @@ export const StoreProvider = ({children})=>{
             setSearchByTitle,
             filteredProducts,
             setFilteredProducts,
-            filteredProductsByTitle
+            filteredProductsByTitle,
+            searchByCategory,
+            setSearchByCategory,
+            filteredProductsByCategory,
+            filterBy
         }}>
             {children}
         </Store.Provider>

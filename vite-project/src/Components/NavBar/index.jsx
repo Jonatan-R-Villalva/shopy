@@ -15,37 +15,49 @@ export const  NavBar = () =>{
                 </NavLink>
             </li>
             <li>
-                <NavLink to='/all'
+                <NavLink 
+                to='/'
+                onClick={()=>context.setSearchByCategory()}
                 className={({isActive})=>
                 isActive ? activeStyle : undefined
                 }>All</NavLink>
             </li>
             <li>
-                <NavLink to='/clothes'
+                <NavLink 
+                to='/clothes'
+                onClick={()=>context.setSearchByCategory('clothes')}
                 className={({isActive})=>
                 isActive ? activeStyle : undefined
                 }>Clothes</NavLink>
             </li>
             <li>
-                <NavLink to='/electronics'
+                <NavLink 
+                to='/electronics'
+                onClick={()=>context.setSearchByCategory('electronics')}
                 className={({isActive})=>
                 isActive ? activeStyle : undefined
                 }>Electronics</NavLink>
             </li>
             <li>
-                <NavLink to='/furnitures'
+                <NavLink 
+                to='/furnitures'
+                onClick={()=>context.setSearchByCategory('furniture')}
                 className={({isActive})=>
                 isActive ? activeStyle : undefined
                 }>Furnitures</NavLink>
             </li>
             <li>
-                <NavLink to='/toys'
+                <NavLink 
+                to='/shoes'
+                onClick={()=>context.setSearchByCategory('shoes')}
                 className={({isActive})=>
                 isActive ? activeStyle : undefined
-                }>Toys</NavLink>
+                }>Shoes</NavLink>
             </li>
             <li>
-                <NavLink to='/others'
+                <NavLink 
+                to='/others'
+                onClick={()=>context.setSearchByCategory('others')}
                 className={({isActive})=>
                 isActive ? activeStyle : undefined
                 }>Others</NavLink>

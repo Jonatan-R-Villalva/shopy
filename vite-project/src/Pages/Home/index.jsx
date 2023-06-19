@@ -15,9 +15,10 @@ function Home() {
             )) 
           )  
         }else{
-          return <div className="w-full">
-            <h1 className=" flex justify-center text-center">we don't have anything</h1>
-          </div>
+          return(
+            // eslint-disable-next-line react/no-unescaped-entities
+            <p className="text-center uppercase text-xl">We don't have anything</p>
+          )
         }
       }else{
         return(      
