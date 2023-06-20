@@ -6,26 +6,16 @@ import { ProductDetail } from "../../Components/ProductDetail";
 function Home() {
     const context = useContext(Store)
     const renderView = ()=>{
-      if(context.searchByTitle?.length > 0){
-        if(context.filteredProducts?.length > 0){
-          return (
-            context.filteredProducts?.map((product)=>(
-              <Card key={product.id} 
-              data={product} />
-            )) 
-          )  
-        }else{
-          return(
-            // eslint-disable-next-line react/no-unescaped-entities
-            <p className="text-center uppercase text-xl">We don't have anything</p>
-          )
-        }
+      if(context.filteredProducts?.length > 0){
+        return(
+          context.filteredProducts.map(product => (
+            <Card key={product.id} data={product} />
+          ))
+        )
       }else{
         return(      
-          context.products?.map((product)=>(
-            <Card key={product.id} 
-            data={product} />
-          )) 
+        // eslint-disable-next-line react/no-unescaped-entities
+        <div className='text-2xl uppercase'>We don't have anything</div> 
       )        
       }
     }

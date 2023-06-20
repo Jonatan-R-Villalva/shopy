@@ -51,6 +51,7 @@ export const StoreProvider = ({children})=>{
         if(searchByTitle && !searchByCategory) setFilteredProducts(filterBy('BY_TITLE', products,searchByCategory,searchByTitle))
         if(!searchByTitle && searchByCategory) setFilteredProducts(filterBy('BY_CATEGORY',products,searchByCategory,searchByTitle))
         if(!searchByTitle && !searchByCategory) setFilteredProducts(filterBy(null,products,searchByCategory,searchByTitle))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[products, searchByTitle , searchByCategory])
 
     
