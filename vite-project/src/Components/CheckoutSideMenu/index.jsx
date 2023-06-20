@@ -23,6 +23,7 @@ export const CheckoutSideMenu = () =>{
         }
         context.setOrder([...context.order, orderToAdd])
         context.setCartProducts([])
+        context.setSearchByTitle(null)
     }
     return(
         <aside className={`${context.checkoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu border border-black rounded-lg flex-col fixed right-0 bg-white`}>
